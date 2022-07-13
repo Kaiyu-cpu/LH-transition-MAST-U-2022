@@ -15,6 +15,7 @@ superX = df.loc[(df['Divertor'].values=='SUPER-X')]
 colors = ['midnightblue', 'royalblue','orangered']
 
 for div, col in zip([conventional_600,conventional_750,superX],colors):
+
     plt.figure(1)
     plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
     plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth [MW].1'].dropna().values,yerr=div['SDPth [MW].2'].dropna().values,fmt='v',color=col)
@@ -49,8 +50,4 @@ plt.ylabel('Pth no rad [MW]')
 plt.xlabel('ne E-20 []')
 plt.legend(['LH conventional - 600kA','LH conventional - 750kA','LH SuperX - 600kA'])
 
-
-
 plt.show()
-
-
