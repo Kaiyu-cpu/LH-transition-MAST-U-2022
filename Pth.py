@@ -18,11 +18,11 @@ for div, col in zip([conventional_600,conventional_750,superX],colors):
 
     plt.figure(1)
     plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
-    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth [MW].1'].dropna().values,yerr=div['SDPth [MW].2'].dropna().values,fmt='v',color=col)
+    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth [MW].1'].dropna().values,yerr=div['SDPth [MW].2'].dropna().values,fmt='v',color=col,markerfacecolor='none')
 
     plt.figure(2)
     plt.errorbar(div['ne E-20'].dropna().values,div['Pth no rad [MW]'].dropna().values,yerr=div['SDPth [MW].1'].dropna().values,fmt='^',color=col)
-    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth no rad [MW].1'].dropna().values,yerr=div['SDPth [MW].3'].dropna().values,fmt='v',color=col)
+    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth no rad [MW].1'].dropna().values,yerr=div['SDPth [MW].3'].dropna().values,fmt='v',color=col,markerfacecolor='none')
 
     plt.figure(3)
     plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
