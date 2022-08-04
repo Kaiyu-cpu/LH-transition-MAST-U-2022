@@ -6,7 +6,7 @@ Created on Wed Jun 29 20:37:19 2022
 @author: kc1457
 
 Read me: This code is used to calculate Pth and plot the power breakdown and the general parameters.
-         Please make sure you also have calc_pohm.py,calc_w_dot.py,calc_ne_bar.py in the directory.
+         Please make sure you also have calc_pohm.py,calc_w_dot.py,calc_ne_bar.py and read_efit.py in the directory.
          Each cell has different function. Please run cell by cell.
 """
 
