@@ -1,9 +1,7 @@
-from cProfile import label
-from turtle import color
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_excel('MAST-U_home.xlsx', index_col='Shot Number')
+df = pd.read_excel('./MAST-U_home.xlsx', index_col='Shot Number')
 
 print(df.columns)
 
@@ -16,38 +14,48 @@ colors = ['midnightblue', 'royalblue','orangered']
 
 for div, col in zip([conventional_600,conventional_750,superX],colors):
 
-    plt.figure(1)
-    plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
-    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth [MW].1'].dropna().values,yerr=div['SDPth [MW].2'].dropna().values,fmt='v',color=col,markerfacecolor='none')
+    plt.figure(1,figsize=(8,5))
+    plt.errorbar(div['ne E-20'].dropna().values,div['Pth^rad [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
+    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth^rad [MW].1'].dropna().values,yerr=div['SDPth [MW].2'].dropna().values,fmt='v',color=col,markerfacecolor='none')
 
-    plt.figure(2)
-    plt.errorbar(div['ne E-20'].dropna().values,div['Pth no rad [MW]'].dropna().values,yerr=div['SDPth [MW].1'].dropna().values,fmt='^',color=col)
-    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth no rad [MW].1'].dropna().values,yerr=div['SDPth [MW].3'].dropna().values,fmt='v',color=col,markerfacecolor='none')
+    plt.figure(2,figsize=(8,5))
+    plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW].1'].dropna().values,fmt='^',color=col)
+    plt.errorbar(div['ne E-20.1'].dropna().values,div['Pth [MW].1'].dropna().values,yerr=div['SDPth [MW].3'].dropna().values,fmt='v',color=col,markerfacecolor='none')
 
-    plt.figure(3)
-    plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
+    plt.figure(3,figsize=(8,5))
+    plt.errorbar(div['ne E-20'].dropna().values,div['Pth^rad [MW]'].dropna().values,yerr=div['SDPth [MW]'].dropna().values,fmt='^',color=col)
 
-    plt.figure(4)
-    plt.errorbar(div['ne E-20'].dropna().values,div['Pth no rad [MW]'].dropna().values,yerr=div['SDPth [MW].1'].dropna().values,fmt='^',color=col)
+    plt.figure(4,figsize=(8,5))
+    plt.errorbar(div['ne E-20'].dropna().values,div['Pth [MW]'].dropna().values,yerr=div['SDPth [MW].1'].dropna().values,fmt='^',color=col)
 
 plt.figure(1)
-plt.ylabel('Pth [MW]')
-plt.xlabel('ne E-20 []')
+plt.ylabel('$P_{th,rad} [MW]$')
+plt.xlabel('$n_e [10^{20}m^{-3}]$')
+plt.ylim(0,4.5)
+plt.xlim(0,2.0)
 plt.legend(['LH conventional - 600kA','HL conventional at 600kA','LH conventional - 750kA','HL conventional - 750kA','LH SuperX - 600kA','HL SuperX - 600kA'])
+plt.savefig(f'./figures/Pth-rad-LHHL.png')
 
 plt.figure(2)
-plt.ylabel('Pth no rad [MW]')
-plt.xlabel('ne E-20 []')
+plt.ylabel('$P_{th} [MW]$')
+plt.xlabel('$n_e [10^{20}m^{-3}]$')
+plt.ylim(0,4.5)
+plt.xlim(0,2.0)
 plt.legend(['LH conventional - 600kA','HL conventional at 600kA','LH conventional - 750kA','HL conventional - 750kA','LH SuperX - 600kA','HL SuperX - 600kA'])
+plt.savefig(f'./figures/Pth-LHHL.png')
 
 plt.figure(3)
-plt.ylabel('Pth [MW]')
-plt.xlabel('ne E-20 []')
-plt.legend(['LH conventional - 600kA','LH conventional - 750kA','LH SuperX - 600kA'])
+plt.ylabel('$P_{th,rad} [MW]$')
+plt.xlabel('$n_e [10^{20}m^{-3}]$')
+plt.ylim(0,4.5)
+plt.xlim(0,2.0)
+plt.legend(['conventional - 600kA','conventional - 750kA','SuperX - 600kA'])
+plt.savefig(f'./figures/Pth-rad-LH.png')
 
 plt.figure(4)
-plt.ylabel('Pth no rad [MW]')
-plt.xlabel('ne E-20 []')
-plt.legend(['LH conventional - 600kA','LH conventional - 750kA','LH SuperX - 600kA'])
-
-plt.show()
+plt.ylabel('$P_{th} [MW]$')
+plt.xlabel('$n_e [10^{20}m^{-3}]$')
+plt.ylim(0,4.5)
+plt.xlim(0,2.0)
+plt.legend(['conventional - 600kA','conventional - 750kA','SuperX - 600kA'])
+plt.savefig(f'./figures/Pth-LH.png')
